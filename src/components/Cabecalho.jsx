@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export default function Cabecalho() {
 
     return(
@@ -5,9 +7,9 @@ export default function Cabecalho() {
         <header>
           <h1>Vite + React / Coded By - RM552579</h1>
           <ul>
-            <li><a href="#">Item 1</a></li>
-            <li><a href="#">Item 2</a></li>
-            <li><a href="#">Item 3</a></li>
+            <li><Link to="/"  ></Link></li>
+            <li> <Link to="/Produtos" ></Link></li>
+            <li> <Link to="/Produtos/editar" ></Link></li>
           </ul>
         </header>
         </>
