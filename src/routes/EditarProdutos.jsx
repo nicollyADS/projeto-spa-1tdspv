@@ -1,44 +1,67 @@
-import { useParams } from "react-router-dom"
-import {ListaProdutos} from "../components/ListaProdutos"
+import { useNavigate, useParams } from "react-router-dom"
+import { ListaProdutos } from "../components/ListaProdutos";
 import { useState } from "react";
 
 export default function EditarProdutos() {
 
-    //utilizar o HOOK useParams() para recuperar o ID passado no path
     const {id} = useParams();
 
-    document.title = "EDITAR PRODUTOS " + id;
+    document.title = "EDITAR PRODUTOS" + id;
 
-    const produtoRetornadoDoFiltro = ListaProdutos.filter(produto => produto.id == id); 
+    const navigate = useNavigate()
 
-    //useState()
+    const produtoRetornadoDoFiltro = ListaProdutos.filter(produto => produto.id == id)[0];
 
-    const [produto, setProduto] = useState("")
+    const [produto, setProduto] = useState({
+      id: produtoRetornadoDoFiltro.id,
+      nome: produtoRetornadoDoFiltro.nome,
+      desc: produtoRetornadoDoFiltro.desc,
+      preco: produtoRetornadoDoFiltro.preco
+    });
+
+    const handleChange = (event) =>{
+
+      const {name, value} = event.target;
+
+      setProduto({...produto,[name]:value});
       
+    }
+
+    const handleSubmit = (event) =>{
+      event.preventDefault();
+
+      let indice;
+
+      ListaProdutos.forEach((item,index)=>{
+        if(item.id == id){
+          indice = index;
+        }
+      });
+
+      ListaProdutos.splice(indice,1,produto);
+        navigate("/produtos")
+    }
 
     return (
       <div>
           <h1>EditarProdutos</h1>
-          <p>Valor do state = {produto}</p>
-          <button onClick={()=> setProduto("JOAQUIM GOSTA DE XUXU")}>MUDAR O STATE</button>
-
 
           <div>
-            <form>
+            <form onSubmit={handleSubmit}>
               <fieldset>
                 <legend>Produto Selecionado</legend>
-                <input type="hiden" name="id" defaultValue={produtoRetornadoDoFiltro[0].id}></input>
+                <input type="hidden" name="id" onChange={handleChange} Value={produto.id}/>
                 <div>
                     <label htmlFor="idProd">Nome do Produto</label>
-                    <input type="text" name="nome" id="idProd" defaultValue={produtoRetornadoDoFiltro[0].nome } />
+                    <input type="text" name="nome" id="idProd" onChange={handleChange} Value={produto.nome} />
                 </div>
                 <div>
                     <label htmlFor="idDesc">Descrição</label>
-                    <input type="text" name="desc" id="idDesc" defaultValue={produtoRetornadoDoFiltro[0].desc } />
+                    <input type="text" name="desc" id="idDesc" onChange={handleChange} Value={produto.desc} />
                 </div>
                 <div>
                     <label htmlFor="idPreco">Preco</label>
-                    <input type="text" name="preco" id="idPreco" defaultValue={produtoRetornadoDoFiltro[0].preco } />
+                    <input type="text" name="preco" id="idPreco" onChange={handleChange} Value={produto.preco} />
                 </div>
                 <div>
                   <button>Editar</button>
@@ -47,8 +70,11 @@ export default function EditarProdutos() {
             </form>
           </div>
 
+          <div>
+            <p>Nome : {produto.nome}</p>
+            <p>Desc : {produto.desc}</p>
+            <p>Preço : {produto.preco}</p>
+          </div>
       </div>
-      
     )
   }
-  
