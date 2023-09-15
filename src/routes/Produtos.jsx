@@ -47,6 +47,7 @@ export default function Produtos() {
                 <th className={classes.tableHeaderStyle}>Nome</th>
                 <th className={classes.tableHeaderStyle}>Descrição</th>
                 <th className={classes.tableHeaderStyle}>Preço</th>
+                <th className={classes.tableHeaderStyle}>Imagem</th>
                 <th className={classes.tableHeaderStyle}>Editar/Excluir</th>
                 </tr>
             </thead>
@@ -57,6 +58,7 @@ export default function Produtos() {
                   <td className={classes.tableDataStyle}>{produto.nome}</td>
                   <td className={classes.tableDataStyle}>{produto.desc}</td>
                   <td className={classes.tableDataStyle}>{produto.preco}</td>
+                  <td className={classes.tableDataStyle}><img src={produto.img} alt={produto.desc} /></td>
                   <td className={classes.tableDataStyle}><Link to={`/editar/produtos/${produto.id}`}><Editar/></Link> | <Link to={`/excluir/produtos/${produto.id}`}><Excluir/></Link></td>
                 </tr>
               ))} 

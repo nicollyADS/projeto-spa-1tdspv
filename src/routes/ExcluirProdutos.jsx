@@ -25,7 +25,7 @@ export default function ExcluirProdutos() {
               <h2>PRODUTO SELECIONADO PARA EXCLUSÃO</h2>
               <h3>Você tem certeza de que deseja excluir esse produto?</h3>
               <figure>
-                <img src="" alt="" />
+                <img src={produto.img} alt={produto.desc} />
                 <figcaption>
                   {produto.nome} - R$ {produto.preco} 
                 </figcaption>
