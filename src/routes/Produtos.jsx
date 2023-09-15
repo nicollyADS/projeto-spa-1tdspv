@@ -8,22 +8,39 @@ export default function Produtos() {
 
     document.title = "Lista de Produtos";
 
+    const [exemplo, setExemplo] = useState([{}]);
+
+    const [count, setCount] = useState(0);
+
     useEffect(()=>{
-      console.log("use effect que sera sempre renderizado!")
+      console.log("Use-Effect que será sempre renderizado!");
     });
 
-    const [exemplo, setExemplo] = useState(0)
+    useEffect(()=>{
+      console.log("Use-Effect que será renderizado apenas 1 vez!");
+
+        setExemplo(ListaProdutos);
+
+    },[]);
+
+    useEffect(()=>{
+      console.log("Use-Effect que será renderizado o objeto ou componente ou elemento que está no array de depenências sofrer atualização.");
+    },[count]);
+
+
+
 
     return (
       <div>
           <h1>LISTA DE PRODUTOS</h1>
 
-          <div>
-            <button onClick={()=> setExemplo(exemplo, 1)} >CLICK - {exemplo}</button>
-          </div>
 
         <div>
-          <table className={classes.tableStyle} >
+          <button onClick={()=> setCount(count + 1)}>COUNTER - {count}</button>
+        </div>
+
+        <div>
+          <table className={classes.tableStyle}>
             <thead>
               <tr className={classes.tableHeaderStyle}>
                 <th className={classes.tableHeaderStyle}>ID</th>
@@ -34,7 +51,7 @@ export default function Produtos() {
                 </tr>
             </thead>
             <tbody>
-              {ListaProdutos.map((produto, index) => (
+              {exemplo.map((produto, index) => (
                 <tr key={index} className={classes.tableLineStyle}>
                   <td className={classes.tableDataStyle}>{produto.id}</td>
                   <td className={classes.tableDataStyle}>{produto.nome}</td>
@@ -42,11 +59,11 @@ export default function Produtos() {
                   <td className={classes.tableDataStyle}>{produto.preco}</td>
                   <td className={classes.tableDataStyle}><Link to={`/editar/produtos/${produto.id}`}><Editar/></Link> | <Link to={`/excluir/produtos/${produto.id}`}><Excluir/></Link></td>
                 </tr>
-              ))}
+              ))} 
             </tbody>
             <tfoot>
               <tr>
-                <td colSpan="4">Total de Produtos: {ListaProdutos.length}</td>
+                <td colSpan="4" className={classes.tableDataStyle}>Total de Produtos: {ListaProdutos.length}</td>
               </tr>
             </tfoot>
           </table>

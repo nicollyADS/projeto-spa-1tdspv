@@ -53,15 +53,15 @@ export default function EditarProdutos() {
                 <input type="hidden" name="id" onChange={handleChange} Value={produto.id}/>
                 <div>
                     <label htmlFor="idProd">Nome do Produto</label>
-                    <input type="text" name="nome" id="idProd" onChange={handleChange} Value={produto.nome} />
+                    <input type="text" name="nome" id="idProd" onChange={handleChange} value={produto.nome} />
                 </div>
                 <div>
                     <label htmlFor="idDesc">Descrição</label>
-                    <input type="text" name="desc" id="idDesc" onChange={handleChange} Value={produto.desc} />
+                    <input type="text" name="desc" id="idDesc" onChange={handleChange} value={produto.desc} />
                 </div>
                 <div>
                     <label htmlFor="idPreco">Preco</label>
-                    <input type="text" name="preco" id="idPreco" onChange={handleChange} Value={produto.preco} />
+                    <input type="text" name="preco" id="idPreco" onChange={handleChange} value={produto.preco} />
                 </div>
                 <div>
                   <button>Editar</button>
