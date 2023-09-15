@@ -1,4 +1,22 @@
+import { useNavigate, useParams } from "react-router-dom"
+import { ListaProdutos } from "../components/ListaProdutos";
+
 export default function ExcluirProdutos() {
+
+  document.title = "Excluir Produto"
+
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const produto = ListaProdutos.filter((item) => item.id == id)[0];
+
+  const handleDelete = () =>{
+
+    let indice = ListaProdutos.findIndex(item => item.id ==  produto.id);
+    ListaProdutos.splice(indice,1);
+    alert("Produto excluído com sucesso!");
+    navigate("/produtos");
+ }
+
   return (
     <>
       <h1>Excluir Produtos</h1>
@@ -9,11 +27,11 @@ export default function ExcluirProdutos() {
               <figure>
                 <img src="" alt="" />
                 <figcaption>
-                  Nome - R$ Preço
+                  {produto.nome} - R$ {produto.preco} 
                 </figcaption>
               </figure>
-              <button>Excluir</button>
-              <button>Cancelar</button>  
+              <button onClick={handleDelete}>Excluir</button>
+              <button onClick={()=> navigate("/produtos")}>Cancelar</button>  
           </section>
       </div>
     </>
