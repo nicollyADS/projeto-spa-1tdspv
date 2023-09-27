@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {AiFillEdit as Editar, AiOutlineDelete as Excluir} from "react-icons/ai";
 import classes from "./Produtos.module.css";
 import { useEffect, useState } from "react";
+import ModalInserir from "../components/ModalInserir";
 
 export default function Produtos() {
 
@@ -24,10 +25,16 @@ export default function Produtos() {
 
     },[]);
 
+    const [open, setOpen] = useState(false) 
+
     return (
       <div>
           <h1>LISTA DE PRODUTOS</h1>
+          {open ? <ModalInserir open={open} setOpen={setOpen} /> : ""}
 
+
+        <button onClick={()=>setOpen(true)}>OPEN-MODAL</button>
+          
         <div>
           <table className={classes.tableStyle}>
             <thead>
