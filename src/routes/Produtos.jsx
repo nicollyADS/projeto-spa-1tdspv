@@ -3,6 +3,7 @@ import {AiFillEdit as Editar, AiOutlineDelete as Excluir} from "react-icons/ai";
 import classes from "./Produtos.module.css";
 import { useEffect, useState } from "react";
 import ModalInserir from "../components/ModalInserir";
+import "./Produtos.scss";
 
 export default function Produtos() {
 
@@ -37,32 +38,32 @@ export default function Produtos() {
       <Link onClick={()=> setOpen(true)}>Cadastrar Produtos</Link>
 
         <div>
-          <table className={classes.tableStyle}>
+          <table className="tableStyle">
             <thead>
-              <tr className={classes.tableHeaderStyle}>
-                <th className={classes.tableHeaderStyle}>ID</th>
-                <th className={classes.tableHeaderStyle}>Nome</th>
-                <th className={classes.tableHeaderStyle}>Descrição</th>
-                <th className={classes.tableHeaderStyle}>Preço</th>
-                <th className={classes.tableHeaderStyle}>Imagem</th>
-                <th className={classes.tableHeaderStyle}>Editar/Excluir</th>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Imagem</th>
+                <th>Editar/Excluir</th>
                 </tr>
             </thead>
             <tbody>
               {listaProdutoLocal.map((produto, index) => (
-                <tr key={index} className={classes.tableLineStyle}>
-                  <td className={classes.tableDataStyle}>{produto.id}</td>
-                  <td className={classes.tableDataStyle}>{produto.nome}</td>
-                  <td className={classes.tableDataStyle}>{produto.desc}</td>
-                  <td className={classes.tableDataStyle}>{produto.preco}</td>
-                  <td className={classes.tableDataStyle}><img src={produto.img} alt={produto.desc} width={100}/></td>
-                  <td className={classes.tableDataStyle}><Link to={`/editar/produtos/${produto.id}`}><Editar/></Link> | <Link to={`/excluir/produtos/${produto.id}`}><Excluir/></Link></td>
+                <tr key={index}>
+                  <td>{produto.id}</td>
+                  <td>{produto.nome}</td>
+                  <td>{produto.desc}</td>
+                  <td>{produto.preco}</td>
+                  <td><img src={produto.img} alt={produto.desc} width={100}/></td>
+                  <td><Link to={`/editar/produtos/${produto.id}`}><Editar/></Link> | <Link to={`/excluir/produtos/${produto.id}`}><Excluir/></Link></td>
                 </tr>
               ))} 
             </tbody>
             <tfoot>
               <tr>
-                <td colSpan="6" className={classes.tableDataStyle}>Total de Produtos: {listaProdutoLocal.length}</td>
+                <td colSpan="6">Total de Produtos: {listaProdutoLocal.length}</td>
               </tr>
             </tfoot>
           </table>
@@ -75,7 +76,7 @@ export default function Produtos() {
   
 //   <div>
 //   <button onClick={()=> setCount(count + 1)}>COUNTER - {count}</button>
-/// </div>
+// </div>
 
   
   // const [exemplo, setExemplo] = useState([{}]);
