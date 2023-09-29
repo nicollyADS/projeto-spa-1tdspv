@@ -1,6 +1,7 @@
 import styles from "./ModalInserir.module.css";
 import { useEffect, useState } from "react";
 
+
 export default function ModalInserir(props) {
   document.title = "CADASTRAR";
 
