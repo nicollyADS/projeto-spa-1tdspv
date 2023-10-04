@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./Cabecalho.scss";
 
 export default function Cabecalho() {
   return (
